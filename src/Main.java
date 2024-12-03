@@ -22,7 +22,7 @@ public class Main {
                     name = scanner.next();
                     System.out.println("Type de système d'exploitation (ex: Linux_64, Windows7_64) : ");
                     String os = scanner.next();
-                    System.out.println(VBoxWrapper.create(name, os));
+                    VmCreator.create(name, os);
                     break;
                 case "2":
                     System.out.println("Liste des machines virtuelles");

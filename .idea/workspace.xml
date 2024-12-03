@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abb09689-f2b3-4ba1-a100-c7132f2c3916" name="Changes" comment="Add virtualbox commands">
+    <list default="true" id="abb09689-f2b3-4ba1-a100-c7132f2c3916" name="Changes" comment="Ajout du menu">
+      <change afterPath="$PROJECT_DIR$/src/VmCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
@@ -23,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="terminal-commands" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -44,7 +45,7 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "terminal-commands",
+    "git-widget-placeholder": "vm-create",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -62,7 +63,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1733236477045</updated>
-      <workItem from="1733236478180" duration="2722000" />
+      <workItem from="1733236478180" duration="7322000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <option name="closed" value="true" />
@@ -88,7 +89,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733239943242</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Ajout du menu">
+      <option name="closed" value="true" />
+      <created>1733240401140</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733240401140</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -98,6 +107,7 @@
     <MESSAGE value="init commit" />
     <MESSAGE value="add basics commands" />
     <MESSAGE value="Add virtualbox commands" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add virtualbox commands" />
+    <MESSAGE value="Ajout du menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout du menu" />
   </component>
 </project>
