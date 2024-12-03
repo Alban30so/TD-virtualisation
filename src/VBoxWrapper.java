@@ -1,6 +1,16 @@
-import java.util.Scanner;
-
 public class VBoxWrapper {
+	// Constante pour la commande suppression de fichier selon l'OS
+	public static final String DELETE_CMD;
+
+	// Bloc statique pour initialiser la constante
+	static {
+		if (System.getProperty("os.name").toLowerCase().contains("win")) {
+			DELETE_CMD = "del ";
+		} else {
+			DELETE_CMD = "rm ";
+		}
+	}
+
 	public static String create(String name, String os) {
 		return Terminal.sendCommand("vboxmanage createvm --name " + name + " --ostype " + os + " --register");
 	}
@@ -31,9 +41,12 @@ public class VBoxWrapper {
 
 	public static boolean isVBoxInstalled() {
 		String output = Terminal.sendCommand("vboxmanage --version");
-		return (output != null && !output.isEmpty());
+		return output != null && !output.isEmpty();
 	}
 
+	// Partie clonage - Arthur
+
+	// Clonage VM avec la méthode export/import
 	public static void deployUsingExportImport(String sourceVM, String cloneName) {
 		// Chemin temporaire pour l'export
 		String exportPath = sourceVM + "_template.ova";
@@ -48,51 +61,17 @@ public class VBoxWrapper {
 
 		// Suppression du fichier temporaire
 		System.out.println("\n[VBox-Wish] Nettoyage du fichier temporaire...");
-		// TO-DO: Pour Unix, adapter automatiquement avec Windows ???
-		Terminal.sendCommand("rm -f " + exportPath);
+		Terminal.sendCommand(DELETE_CMD + exportPath);
 
 		System.out.println("\n\n[VBox-Wish] Déploiement via export/import terminé avec succès !");
 	}
 
+	// Clonage VM avec la méthode direct clone
 	public static void deployUsingDirectClone(String sourceVM, String cloneName) {
 		// Créer un clone
-		System.out.println("[VBox-Wish] Clonage direct de la machine...");
+		System.out.println("\n[VBox-Wish] Clonage direct de la machine...");
 		Terminal.sendCommand("vboxmanage clonevm " + sourceVM + " --name " + cloneName + " --register");
 
 		System.out.println("\n\n[VBox-Wish] Déploiement via clonage direct terminé avec succès !");
-	}
-
-	public static void deployTemplate() {
-		Scanner scanner = new Scanner(System.in);
-
-		System.out
-				.println("\n\n[VBox-Wish] == Déploiement d'une template ==\n\nFaites votre choix =>");
-		System.out.println("1. Exporter/Importer une appliance\n2. Clonage direct");
-
-		int choix = scanner.nextInt();
-		scanner.nextLine();
-
-		System.out.println("\n[VBox-Wish] Nom machine source :");
-		String sourceVM = scanner.nextLine();
-
-		System.out.println("\n[VBox-Wish] Nom machine déployée :");
-		String cloneName = scanner.nextLine();
-
-		try {
-			switch (choix) {
-				case 1:
-					deployUsingExportImport(sourceVM, cloneName);
-					break;
-				case 2:
-					deployUsingDirectClone(sourceVM, cloneName);
-					break;
-				default:
-					System.out.println("[VBox-Wish] Choix invalide.");
-			}
-		} catch (Exception e) {
-			System.err.println("[VBox-Wish] Erreur lors du déploiement : " + e.getMessage());
-		}
-
-		scanner.close();
 	}
 }
