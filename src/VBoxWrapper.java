@@ -1,5 +1,28 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 public class VBoxWrapper {
+    //Set list of OS type from ostype_virtualbox.txt.txt
+    public static String[] GetOSType(String filePath) {
+        ArrayList<String> osTypesList = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (!line.trim().isEmpty()) {
+                    osTypesList.add(line.trim());
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la lecture du fichier : " + e.getMessage());
+        }
+
+        // Convertir la liste en tableau de chaînes
+        return osTypesList.toArray(new String[0]);
+    }
     public static String create(String name, String os) {
+        System.out.println("création d'une VM");
         return Terminal.sendCommand("vboxmanage createvm --name " + name + " --ostype " + os + " --register");
     }
 

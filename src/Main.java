@@ -1,4 +1,7 @@
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import static java.lang.System.exit;
 
 public class Main {
     public static void main(String[] args) {
@@ -6,6 +9,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println(VBoxWrapper.get_version());
         if (!VBoxWrapper.get_version().contains("VirtualBox not installed")) {
+            String oslist = "src/ostype_virtualbox.txt";
+            String[] osTypesList = VBoxWrapper.GetOSType(oslist);
             System.out.println("1. Créer une machine virtuelle");
             System.out.println("2. Lister les machines virtuelles");
             System.out.println("3. Démarrer une machine virtuelle");
@@ -19,9 +24,22 @@ public class Main {
                 case "1":
                     System.out.println("Création d'une machine virtuelle");
                     System.out.println("Nom de la machine virtuelle : ");
+                    //check if name is in ostypevirtualbox.txt file
                     name = scanner.next();
                     System.out.println("Type de système d'exploitation (ex: Linux_64, Windows7_64) : ");
                     String os = scanner.next();
+                    int i = 0;
+                    //verify if OS is in the ostype_virtualbox.txt.txt file
+                    for (String osType : osTypesList) {
+                        if (osType.equals(os)) {
+                            i = 1;
+                            break;
+                        }
+                    }
+                    if (i == 0) {
+                        System.out.println("Type de système d'exploitation non reconnu");
+                        exit(1);
+                    }
                     VmCreator.create(name, os);
                     break;
                 case "2":
