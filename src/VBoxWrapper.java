@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 public class VBoxWrapper {
 	// Constante pour la commande suppression de fichier selon l'OS
 	public static final String DELETE_CMD;
