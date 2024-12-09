@@ -15,7 +15,7 @@ public class Main {
             System.out.println("2. Lister les machines virtuelles");
             System.out.println("3. Démarrer une machine virtuelle");
             System.out.println("4. Arrêter une machine virtuelle");
-            System.out.println("5. Cloner une machine virtuelle");
+            System.out.println("5. Deployer un template");
             System.out.println("6. Supprimer une machine virtuelle");
             System.out.println("7. Exécuter une commande VirtualBox");
             System.out.println("8. Quitter");
@@ -59,12 +59,7 @@ public class Main {
                     System.out.println(VBoxWrapper.stop(name));
                     break;
                 case "5":
-                    System.out.println("Clonage d'une machine virtuelle");
-                    System.out.println("Nom de la machine virtuelle à cloner : ");
-                    name = scanner.next();
-                    System.out.println("Nom du clone : ");
-                    String clone = scanner.next();
-                    System.out.println(VBoxWrapper.clone(name, clone));
+                    deployTemplate()
                     break;
                 case "6":
                     System.out.println("Suppression d'une machine virtuelle");
@@ -86,4 +81,35 @@ public class Main {
             System.out.println("VirtualBox n'est pas installé");
         }
     }
+
+	// Déploiement d'une template (clonage)
+	public static void deployTemplate() {
+		System.out
+				.println("\n\n[VBox-Wish] == Déploiement d'une template ==\n\nFaites votre choix =>");
+		System.out.println("1. Exporter/Importer une appliance\n2. Clonage direct");
+
+		int choix = scanner.nextInt();
+		scanner.nextLine();
+
+		System.out.println("\n[VBox-Wish] Nom machine source :");
+		String sourceVM = scanner.nextLine();
+
+		System.out.println("\n[VBox-Wish] Nom machine déployée :");
+		String cloneName = scanner.nextLine();
+
+		try {
+			switch (choix) {
+				case 1:
+					VBoxWrapper.deployUsingExportImport(sourceVM, cloneName);
+					break;
+				case 2:
+					VBoxWrapper.deployUsingDirectClone(sourceVM, cloneName);
+					break;
+				default:
+					System.out.println("\n[VBox-Wish] Choix invalide.");
+			}
+		} catch (Exception e) {
+			System.err.println("\n[VBox-Wish] Erreur lors du déploiement : " + e.getMessage());
+		}
+	}
 }
