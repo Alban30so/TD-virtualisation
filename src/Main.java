@@ -7,8 +7,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("[VBox-Wish] Bienvenue sur l'assistant VM");
         Scanner scanner = new Scanner(System.in);
-        System.out.println(VBoxWrapper.get_version());
-        if (!VBoxWrapper.get_version().contains("VirtualBox not installed")) {
+        if (VBoxWrapper.isVBoxInstalled()){
             String oslist = "src/ostype_virtualbox.txt";
             String[] osTypesList = VBoxWrapper.GetOSType(oslist);
             System.out.println("1. Créer une machine virtuelle");
@@ -59,7 +58,7 @@ public class Main {
                     System.out.println(VBoxWrapper.stop(name));
                     break;
                 case "5":
-                    deployTemplate()
+                    deployTemplate();
                     break;
                 case "6":
                     System.out.println("Suppression d'une machine virtuelle");
@@ -84,6 +83,7 @@ public class Main {
 
 	// Déploiement d'une template (clonage)
 	public static void deployTemplate() {
+        Scanner scanner = new Scanner(System.in);
 		System.out
 				.println("\n\n[VBox-Wish] == Déploiement d'une template ==\n\nFaites votre choix =>");
 		System.out.println("1. Exporter/Importer une appliance\n2. Clonage direct");
