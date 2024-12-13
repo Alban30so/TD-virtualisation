@@ -3,6 +3,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 public class VBoxWrapper {
 	// Constante pour la commande suppression de fichier selon l'OS
 	public static final String DELETE_CMD;
@@ -15,6 +16,7 @@ public class VBoxWrapper {
 			DELETE_CMD = "rm ";
 		}
 	}
+
 	public static String[] GetOSType(String filePath) {
 		ArrayList<String> osTypesList = new ArrayList<>();
 
@@ -33,6 +35,7 @@ public class VBoxWrapper {
 		// Convertir la liste en tableau de chaînes
 		return osTypesList.toArray(new String[0]);
 	}
+
 	public static String create(String name, String os) {
 		return Terminal.sendCommand("vboxmanage createvm --name " + name + " --ostype " + os + " --register");
 	}
