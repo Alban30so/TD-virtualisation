@@ -53,8 +53,9 @@ public class VBoxWrapper {
 		return Terminal.sendCommand("vboxmanage controlvm " + name + " poweroff");
 	}
 
-	public static String list() {
-		return Terminal.sendCommand("vboxmanage list vms");
+	public static String[] list() {
+		String output = Terminal.sendCommand("vboxmanage list vms");
+		return output != null ? output.split("\n") : new String[1];
 	}
 
 	public static String command(String command) {

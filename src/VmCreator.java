@@ -19,7 +19,10 @@ public class VmCreator {
                 System.out.println(VBoxWrapper.command("modifyvm " + name + " --memory " + ram + " --cpus " + cpu));
                 break;
             case "2":
-                System.out.println("En attente");
+                System.out.println("Modification des paramètres d'affichage");
+                System.out.println("Mémoire vidéo (en Mo) : ");
+                int video_ram = scanner.nextInt();
+                System.out.println(VBoxWrapper.command("modifyvm " + name + " --vram " + video_ram));
                 break;
             case "3":
                 System.out.println("Modification des paramètres de boot");

@@ -32,7 +32,10 @@ public class Main {
                         }
                         break;
                     case "2":
-                        System.out.println("\n[VBox-Wish] Liste des machines virtuelles :\n" + VBoxWrapper.list());
+                        System.out.println("Liste des machines virtuelles");
+                        for (String vm : VBoxWrapper.list()) {
+                            System.out.println(vm);
+                        }
                         break;
                     case "3":
                         System.out.println("\n[VBox-Wish] Démarrage d'une machine virtuelle\nNom de la machine virtuelle :");
