@@ -42,6 +42,16 @@ public class VmCreator {
 					VBoxWrapper.command("storageattach " + name
 							+ " --storagectl IDEController --port 1 --device 0 --type dvddrive --medium " + isoPath);
 				}
+				System.out.println("Ajouter un disque dur ? (O/N)");
+				if (scanner.nextLine().equals("O")) {
+					System.out.println("Espace de stockage (en Mo) :");
+					String stockageMo = scanner.nextLine();
+					VBoxWrapper.command("createmedium disk --size " + stockageMo + " --format VDI");
+					System.out.println("Entrez le chemin absolu du disque dur :");
+					String diskPath = scanner.nextLine();
+					VBoxWrapper.command("storageattach " + name
+							+ " --storagectl IDEController --port 0 --device 0 --type hdd --medium " + diskPath);
+				}
 				break;
 			case "5":
 				System.out.println("Modification des paramètres réseau");
