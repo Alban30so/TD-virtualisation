@@ -5,7 +5,7 @@ public class Main {
 
         if (VBoxWrapper.isVBoxInstalled()) {
             do {
-                String[] osTypesList = VBoxWrapper.GetOSType("src/ostype_virtualbox.txt");
+                String[] osTypesList = VBoxWrapper.GetOSType("ostype_virtualbox.txt");
 
                 System.out.println("1. Créer une machine virtuelle");
                 System.out.println("2. Lister les machines virtuelles");
