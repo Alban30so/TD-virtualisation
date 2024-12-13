@@ -98,14 +98,11 @@ public class VBoxWrapper {
 	}
 
 	// Déploiement d'une template (clonage)
-	public static void deployTemplate() {
-        Scanner scanner = new Scanner(System.in);
-		System.out
-				.println("\n\n[VBox-Wish] == Déploiement d'une template ==\n\nFaites votre choix =>");
+	public static void deployTemplate(Scanner scanner) {
+		System.out.println("\n\n[VBox-Wish] == Déploiement d'une template ==\n\nFaites votre choix =>");
 		System.out.println("1. Exporter/Importer une appliance\n2. Clonage direct");
 
 		int choix = scanner.nextInt();
-		scanner.nextLine();
 
 		System.out.println("\n[VBox-Wish] Nom machine source :");
 		String sourceVM = scanner.nextLine();

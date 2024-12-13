@@ -26,6 +26,7 @@ public class VmCreator {
                 break;
             case "4":
                 System.out.println("Modification des paramètres de stockage");
+                //VBoxWrapper.command("");
                 System.out.println("Ajouter un ISO ? (O/N)");
                 if(scanner.next().equals("O")){
                     set_iso(name);
