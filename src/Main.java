@@ -38,7 +38,9 @@ public class Main {
                         break;
                     case "2":
                         System.out.println("Liste des machines virtuelles");
-                        System.out.println(VBoxWrapper.list());
+                        for (String vm : VBoxWrapper.list()) {
+                            System.out.println(vm);
+                        }
                         break;
                     case "3":
                         System.out.println("Démarrage d'une machine virtuelle");
