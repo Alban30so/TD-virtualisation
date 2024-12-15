@@ -1,10 +1,10 @@
 public class Main {
-	public static void main(String[] args) {
-		System.out.println("[VBox-Wish] Bienvenue sur l'assistant VM");
-		final java.util.Scanner scanner = new java.util.Scanner(System.in);
-		String name, os, commandVbox;
+	private static final java.util.Scanner scanner = new java.util.Scanner(System.in);
+	private static String name, os;
 
+	public static void main(String[] args) {
 		if (VBoxWrapper.isVBoxInstalled()) {
+			System.out.println("[VBox-Wish] Bienvenue sur l'assistant VM");
 			String[] osTypesList = VBoxWrapper.GetOSType("src/ostype_virtualbox.txt");
 
 			do {
@@ -16,7 +16,7 @@ public class Main {
 						System.out.println(
 								"\n[VBox-Wish] Création d'une machine virtuelle\nNom de la machine virtuelle :");
 						name = scanner.nextLine();
-						System.out.println("\nType de système d'exploitation (ex: Linux_64, Windows7_64) :");
+						System.out.println("\n[VBox-Wish] Type de système d'exploitation (ex: Linux_64, Windows7_64) :");
 						os = scanner.nextLine();
 						boolean osFound = false;
 
@@ -29,12 +29,12 @@ public class Main {
 						}
 
 						if (!osFound) {
-							System.out.println("\nType de système d'exploitation inconnu.");
+							System.out.println("\n[VBox-Wish] Type de système d'exploitation inconnu.");
 							System.exit(1);
 						}
 						break;
 					case "2":
-						System.out.println("Liste des machines virtuelles");
+						System.out.println("\n[VBox-Wish] Liste des machines virtuelles");
 						for (String vm : VBoxWrapper.list()) {
 							System.out.println(vm);
 						}
@@ -64,13 +64,11 @@ public class Main {
 						System.exit(0);
 						break;
 					default:
-						System.out.println("\nErreur dans la sélection.");
+						System.out.println("\n[VBox-Wish] Erreur dans la sélection.");
 				}
 			} while (true);
 		} else {
-			System.out.println("VirtualBox n'est pas installé. Fermeture...");
+			System.out.println("\n[VBox-Wish] VirtualBox n'est pas installé. Fermeture...");
 		}
-
-		scanner.close();
 	}
 }
