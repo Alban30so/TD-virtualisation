@@ -5,6 +5,7 @@ public class Terminal {
 	// Envoyer une commande système via le shell
 	public static String sendCommand(String command) {
 		try {
+			@SuppressWarnings("deprecation")
 			Process process = Runtime.getRuntime().exec(command);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			return reader.readLine();
